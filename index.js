@@ -25,6 +25,7 @@ function renderResult(result) {
 			</div>
 			<div class="results-video">
 				<a href="https://www.youtube.com/watch?v=${result.id.videoId}"> <img class = 'js-result-thumbnail' src = "${result.snippet.thumbnails.medium.url}"></a>
+				<br><a href= "https://www.youtube.com/channel/${result.snippet.channelId}">More from ${result.snippet.channelTitle}</a>
 			</div>
 		</div>`;
 }
