@@ -15,6 +15,7 @@ function getDataFromApi (searchTerm, callback){
 		
 	}
 	$.getJSON(YOUTUBE_SEARCH_URL, query, callback);
+	openModal();
 }
 
 function renderResult(result) {
@@ -23,11 +24,37 @@ function renderResult(result) {
 			<div class= "results-info">
 				<h3 class= 'js-result-title'>${result.snippet.title}</h3>
 			</div>
-			<div class="results-video">
-				<a href="https://www.youtube.com/watch?v=${result.id.videoId}"> <img class = 'js-result-thumbnail' src = "${result.snippet.thumbnails.medium.url}"></a>
+			<div class="results-thumbnails">
+				 <button id="openModal"><img class = 'js-result-thumbnail' src = "${result.snippet.thumbnails.medium.url}"></button>
 			</div>
 		</div>`;
+	
+	
 }
+
+//let modal = ${.myModal};
+//let openModal = ${.openModal};
+//let span = ${.close}[0];
+
+function openModal() {
+	$('.open-modal').on('click', event => {
+		event.preventDefault();
+		${model}.style.display = "block";
+		$('.model-content').append(`<a href="https://www.youtube.com/watch?v=${result.id.videoId}">`);
+	});
+	console.log("openModal Ran");
+}
+
+
+	
+
+
+/*window.onclick = function(event) {
+	if (event.target == modal){
+		modal.style.display = "none";
+	}
+}*/
+
 
 function displayYouTubeSearchData(data){
 	const  results = data.items.map((item, index) => 
@@ -43,6 +70,7 @@ function watchSubmit() {
 		const query = queryTarget.val();
 		queryTarget.val("");
 		getDataFromApi(query, displayYouTubeSearchData);
+		
 		
 		
 	});
