@@ -10,27 +10,30 @@ function getDataFromApi (searchTerm, callback){
 	const query = {
 		key: 'AIzaSyDjuwzuBuJAjl-OJQLx8v-ape62xhu_LjI',
 		part: 'snippet',
+		type: 'video',
 		q: `${searchTerm} in:name`,
 		
 	}
-	console.log(getDataFromApi);
 	$.getJSON(YOUTUBE_SEARCH_URL, query, callback);
 }
 
 function renderResult(result) {
 	return`
 		<div class = "results">
-			<img class = 'js-result-thumbnail' src = "${result.snippet.thumbnails.medium.url}">
+			<div class= "results-info">
+				<h3 class= 'js-result-title'>${result.snippet.title}</h3>
+			</div>
+			<div class="results-video">
+				<a href="https://www.youtube.com/watch?v=${result.id.videoId}"> <img class = 'js-result-thumbnail' src = "${result.snippet.thumbnails.medium.url}"></a>
+			</div>
 		</div>`;
-		console.log(renderResult);
 }
 
 function displayYouTubeSearchData(data){
 	const  results = data.items.map((item, index) => 
 	renderResult(item));
 	$('.js-search-results').html(results);
-	console.log(displayYouTubeSearchData);
-	console.log(results);
+	
 }
 
 function watchSubmit() {
@@ -40,7 +43,7 @@ function watchSubmit() {
 		const query = queryTarget.val();
 		queryTarget.val("");
 		getDataFromApi(query, displayYouTubeSearchData);
-		console.log(watchSubmit);
+		
 		
 	});
 }
