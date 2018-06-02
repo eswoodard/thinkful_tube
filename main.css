@@ -1,10 +1,24 @@
-h1, form, h2 {
-	text-align: center;
+h1 {
+	
+	margin-top: 100px;
+}
+
+form {
 	margin-top: 50px;
 }
 
+h2, form, h1 {
+	text-align: center;
+}
+
+h2 {
+	margin-top: 50px;
+	font-size: 30px;
+	margin-bottom: 50px;
+}
+
 .results {
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 
 }
 
@@ -12,11 +26,16 @@ h1, form, h2 {
 	text-align: center;
 }
 
-h2 {
-	font-size: 30px;
-	margin-bottom: 100px;
-}
 
 h3 {
 	font-size: 18px;
+}
+
+.js-prev-link, .js-next-link {
+	display: inline-block;
+	margin-bottom: 100px;
+}
+
+.js-prev-link {
+	margin-right: 50px;
 }
