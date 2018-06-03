@@ -11,11 +11,14 @@ function getDataFromApi (searchTerm, callback, newPageToken){
 		key: 'AIzaSyDjuwzuBuJAjl-OJQLx8v-ape62xhu_LjI',
 		part: 'snippet',
 		q: `${searchTerm} in:name`,
+
 		
 	}
 	if (newPageToken) {
 		query.pageToken = newPageToken;
 	}
+
+	
 
 	$.getJSON(YOUTUBE_SEARCH_URL, query, callback);
 
@@ -24,11 +27,12 @@ function getDataFromApi (searchTerm, callback, newPageToken){
 function renderResult(result) {
 	return`
 		<div class = "results">
+					 
 			<div class= "results-info">
 				<h3 class= 'js-result-title'>${result.snippet.title}</h3>
 			</div>
 			<div class="results-video">
-				 <a class = "video" href="https://www.youtube.com/watch?v=${result.id.videoId}"><img class = 'js-result-thumbnail lightbox-trigger' src = "${result.snippet.thumbnails.medium.url}"></a>
+				 <a class = "video" href="https://www.youtube.com/watch?v=${result.id.videoId}"><img alt = "${result.snippet.title}" class = 'js-result-thumbnail lightbox-trigger' src = "${result.snippet.thumbnails.medium.url}"></a>
 				<br><a href= "https://www.youtube.com/channel/${result.snippet.channelId}">More from ${result.snippet.channelTitle}</a></
 			</div>
 		</div>`;
@@ -71,12 +75,40 @@ function displayYouTubeSearchData(data){
 		link.push(renderPreviousLink(data.prevPageToken));
 		console.log("renderPreviousLink ran")};
 	link.push(renderNextLink(data.nextPageToken));
-		
+	
+	let totalResults = data.pageInfo.totalResults;
+	console.log(totalResults);
+	
+	/*$('.js-TotalResults').html(`
+	<div class = "totalResults">
+		<ul>
+			<li>Total Results: ${totalResults}</li>
+		</ul>
+	</div>`);*/	
 	
 	
 	displayLink(link);
 	
+	
 }
+
+
+
+
+/*function displayTotalResults(data) {
+
+	let totalResults = data.pageInfo.totalResults;
+	console.log(totalResults);
+
+	$('.js-TotalResults').html(`
+	<div class = "totalResults">
+		<ul>
+			<li>Total Results: ${totalResults}</li>
+		</ul>
+	</div>`);
+
+}*/
+
 
 function renderPreviousLink(token) {
 	return`
