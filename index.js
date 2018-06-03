@@ -28,11 +28,39 @@ function renderResult(result) {
 				<h3 class= 'js-result-title'>${result.snippet.title}</h3>
 			</div>
 			<div class="results-video">
-				<a href="https://www.youtube.com/watch?v=${result.id.videoId}"> <img class = 'js-result-thumbnail' src = "${result.snippet.thumbnails.medium.url}"></a>
+				 <a class = "video" href="https://www.youtube.com/watch?v=${result.id.videoId}"><img class = 'js-result-thumbnail lightbox-trigger' src = "${result.snippet.thumbnails.medium.url}"></a>
 				<br><a href= "https://www.youtube.com/channel/${result.snippet.channelId}">More from ${result.snippet.channelTitle}</a></
 			</div>
 		</div>`;
 }
+
+/*function openLightbox() {
+	$('.lightbox-trigger').on('click', event => {
+		console.log("openLightbox ran");
+		event.preventDefault();
+		/*let video_href = $(this).attr("href");
+		if ($('.lightbox').length > 0) {
+		$('.content').html('<a "' + video_href + '"/>');
+	}
+		else {
+		
+			let lightbox = 
+				`<div id="lightbox">
+					<div id="content">
+						<a class = "video" href="https://www.youtube.com/watch?v=${result.id.videoId}"></a>
+					</div>
+				</div>`;
+
+			$('body').append(lightbox);
+		
+		});
+
+	$('.lightbox').live('click', function () {
+		$('.lightbox').hide();
+	});
+
+}*/
+
 
 function displayYouTubeSearchData(data){
 	const  results = data.items.map((item, index) => 
@@ -119,9 +147,12 @@ function watchSubmit() {
 
 	handleNextLink();
 	handlePrevLink();
+	//openLightbox();
 	
 }
 
 watchSubmit();
+
+//
 
 
