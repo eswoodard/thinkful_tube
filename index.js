@@ -32,7 +32,7 @@ function renderResult(result) {
 				<h3 class= 'js-result-title'>${result.snippet.title}</h3>
 			</div>
 			<div class="results-video">
-				 <a class = "video" href="https://www.youtube.com/watch?v=${result.id.videoId}"><img alt = "${result.snippet.title}" class = 'js-result-thumbnail lightbox-trigger' src = "${result.snippet.thumbnails.medium.url}"></a>
+				 <a class = "video" href="https://www.youtube.com/watch?v=${result.id.videoId}"><img alt = "video" class = 'js-result-thumbnail lightbox-trigger' src = "${result.snippet.thumbnails.medium.url}"></a>
 				<br><a href= "https://www.youtube.com/channel/${result.snippet.channelId}">More from ${result.snippet.channelTitle}</a></
 			</div>
 		</div>`;
@@ -170,8 +170,8 @@ function watchSubmit() {
 		event.preventDefault();
 		const queryTarget = $(event.currentTarget).find('.js-query');
 		const query = queryTarget.val();
-		//queryTarget.val("");
 		getDataFromApi(query, displayYouTubeSearchData);
+		//queryTarget.val("");
 
 		
 		
